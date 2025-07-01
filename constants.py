@@ -1,0 +1,5 @@
+API_URL = 'http://localhost:5294/api'
+
+EXPENSES_URL = API_URL + '/expenses'
+API_POST_MANY_EXPENSES_ENDPOINT = EXPENSES_URL+  '/add-many'
+API_GET_ALL_EXPENSES = EXPENSES_URL
