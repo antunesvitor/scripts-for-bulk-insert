@@ -19,13 +19,19 @@ def sanitize_debito(filename):
     #filtra apenas os valores positivos
     df = df[df['value'] > 0].copy()
 
-    json = df.to_json(orient='records',indent = 2, force_ascii=False)
+    json = df.to_dict(orient='records')
 
-    print(json)
+    return json
 
 def sanitize_credito(filename):
-    df = pd.read_csv(filename, encoding='utf-8')
-    print(df.head())
 
-    json = df.to_json(orient='records',indent = 2, force_ascii=False)
-    print(json)
+    df = pd.read_csv(filename, encoding='utf-8')
+    #Converte nomes do csv p/ o formatdo da API
+    df = df.rename(columns={'amount': 'value', 'title': 'description'})
+
+    #filtra apenas os valores positivos
+    df = df[df['value'] > 0].copy()
+
+    json = df.to_dict(orient='records')
+
+    return json
